@@ -1,0 +1,47 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+<s:Body>
+<QueryResponse xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector">
+   <QueryResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <MessageId>6f424f6e-6b28-4091-89b7-5ac2f05d9fce</MessageId>
+      <ResponseXml>
+         <response xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector/Messages/Response">
+            <connector id="22636b5b-067f-48ae-86f6-cf6a900b7408">
+               <data id="b9a928b5-6a57-44a4-ac54-bea98f06b507">
+                  <response xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector/Connectors/Bee/Response">
+                     <MultiHit>
+                        <message>We found more than one client in CIT.</message>
+                     </MultiHit>
+                     <SearchIndividualResults>
+                        <IndividualRecords>
+                           <% response_obj.each do |res|  %>
+                           <SearchIndividualRecord>
+                              <Address><%= res[:address] %></Address>
+                              <CreditinfoId><%= res[:creditInfoId]%></CreditinfoId>
+                              <DateOfBirth><%= res[:dateOfBirth] %></DateOfBirth>
+                              <FullName> <%= res[:fullName] %></FullName>
+                              <VotersID><%= res[:votersId] %></VotersID>
+                              <MobilePhone> <%= res[:mobilePhone] %></MobilePhone>
+                           </SearchIndividualRecord>
+                           <% end %>
+                        </IndividualRecords>
+                        <Parameters>
+                           <IdNumbers>
+                              <IdNumberPairIndividual>
+                                 <IdNumber>12345678</IdNumber>
+                                 <IdNumberType>VotersID</IdNumberType>
+                              </IdNumberPairIndividual>
+                           </IdNumbers>
+                        </Parameters>
+                        <SearchRuleApplied>TanzaniaVotersID</SearchRuleApplied>
+                        <Status>SubjectFound</Status>
+                     </SearchIndividualResults>
+                  </response>
+               </data>
+            </connector>
+         </response>
+      </ResponseXml>
+      <Timestamp>2019-12-12T08:07:23.0824102Z</Timestamp>
+   </QueryResult>
+</QueryResponse>
+</s:Body>
+</s:Envelope>
