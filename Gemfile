@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'actionwebservice'
 gem 'wash_out'
 gem 'pry'
+gem 'httparty'
+gem 'savon', '~> 2.12.0'
+
 # gem 'datanoise-actionwebservice'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

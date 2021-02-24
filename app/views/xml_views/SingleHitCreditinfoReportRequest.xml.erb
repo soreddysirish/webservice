@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Header>
+        <wsse:Security s:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            <wsse:UsernameToken wsu:Id="SecurityToken-ad2b9f33-eba3-4e0f-ae41-e90379b97f56" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+                <wsse:Username><%=request_obj["username"]%></wsse:Username>
+                <wsse:Password><%=request_obj["password"]%></wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+    </s:Header>
+    <s:Body>
+        <Query xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector">
+            <request xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+                <MessageId><%= request_obj["random_key"]%></MessageId>
+                <RequestXml>
+                    <RequestXml xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector/Messages/Request">
+                        <connector id="22636b5b-067f-48ae-86f6-cf6a900b7408">
+                            <data id="<%= request_obj["random_key"] %>">
+							<request xmlns="http://creditinfo.com/schemas/2012/09/MultiConnector/Connectors/Bee/Request"
+								 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+								 xsi:schemaLocation="http://creditinfo.com/schemas/2012/09/MultiConnector/Connectors/Bee/Request file:/C:/Users/d.felix/Desktop/Smart%20Search/Smart%20Search/TZA_NMB_BeeRequest.xsd">
+								    <DecisionWorkflow>NMB.TZA.Base</DecisionWorkflow>
+								    <RequestData>
+								        <Individual>
+								        <DateOfBirth><%= request_obj["dateOfBirth"]%></DateOfBirth>
+								        <FullName><%= request_obj["fullname"]%></FullName>								            
+								          <IdNumbers>
+								          	<IdNumberPairIndividual>
+								               	<IdNumber><%= request_obj["idnumber"]%></IdNumber>
+								               	<IdNumberType><%= request_obj["idNumberType"]%></IdNumberType>
+								                </IdNumberPairIndividual>
+								          </IdNumbers>
+								       	<PhoneNumbers>
+                                    				<string><%= request_obj["phonenumber"]%></string>
+                                 				</PhoneNumbers>
+								            <InquiryReasons>ApplicationForCreditOrAmendmentOfCreditTerms</InquiryReasons>
+								            <CreditInfoId></CreditInfoId>
+								            <TypeOfReport>CreditinfoReportPlus</TypeOfReport>
+								        </Individual>        
+								    </RequestData>
+							</request>
+                            </data>
+                        </connector>
+                    </RequestXml>
+                </RequestXml>
+                <Timeout i:nil="true"/>
+            </request>
+        </Query>
+    </s:Body>
+</s:Envelope>

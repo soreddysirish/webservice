@@ -10,6 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20210224063957) do
+
+  create_table "records", force: :cascade do |t|
+    t.date "date"
+    t.string "grade"
+    t.string "probability_of_default"
+    t.string "reason_code"
+    t.string "reason_description"
+    t.string "score"
+    t.string "trend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "dateOfBirth"
+    t.string "fullname"
+    t.string "phonenumber"
+    t.string "idnumber"
+    t.string "idNumberType"
+  end
 
 end
